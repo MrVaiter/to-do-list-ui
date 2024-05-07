@@ -1,0 +1,40 @@
+
+
+.Task {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 15px;
+    height: 60px;
+    width: 400px;
+    border: 3px solid #2e4052;
+    border-radius: 15px;
+    padding: 10px;
+    color: #2e4052;
+    background-color: #bdd9bf;
+  }
+  
+  .Task p {
+    width: 100%;
+    font-size: 26px;
+    overflow: scroll;
+    margin-left: 10px;
+  }
+  
+  .Task button {
+    height: 60px;
+    width: 70px;
+    font-size: 50px;
+    line-height: 0px;
+    padding-bottom: 10px;
+    margin-right: 5px;
+    border: 3px solid;
+    border-radius: 10px;
+    background-color: rgba(255, 249, 246, 0);
+  }
+  
+  .Task button:active {
+    color: rgb(255, 249, 246);
+    background-color: #bdd9bf;
+  }
+  
