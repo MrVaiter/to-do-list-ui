@@ -17,14 +17,21 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+      run: |
+       npm ci
+       npm run build --if-present
+
+    - name: Create image
+      run: |
+       docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/to-do-list-ui
+       echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+       docker push ${{ secrets.DOCKERHUB_USERNAME }}/to-do-list-ui
