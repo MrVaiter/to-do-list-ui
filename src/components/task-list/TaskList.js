@@ -7,7 +7,7 @@ let TaskList = () => {
   const [taskList, changeTaskList] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:3001/api/v1/getall")
+    fetch("http://172.18.0.1:3001/api/v1/getall")
       .then((response) => response.json())
       .then((taskList) => {changeTaskList(taskList)})
       .catch((error) => console.error("Error:", error));
