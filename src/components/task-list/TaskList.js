@@ -12,7 +12,9 @@ let TaskList = () => {
 
     fetch(`http://${host}:${port}/api/v1/getall`)
       .then((response) => response.json())
-      .then((taskList) => {changeTaskList(taskList)})
+      .then((taskList) => {
+        changeTaskList(taskList);
+      })
       .catch((error) => console.error("Error:", error));
   }, []);
 
@@ -20,25 +22,30 @@ let TaskList = () => {
     <div className="TaskList">
       <NewTask
         addNewTask={(newTask) =>
-          changeTaskList([...taskList, [newTask, false]])
+          changeTaskList([
+            ...taskList,
+            { ID: taskList.length + 1, TaskName: newTask, Status: false },
+          ])
         }
       />
 
-      {taskList ? taskList.map((task, index) => (
-        <Task
-          key={task["ID"]}
-          taskName={task["TaskName"]}
-          state={task["Status"]}
-          remove={() => {
-            changeTaskList(taskList.filter((_, id) => id !== index));
-          }}
-          done={() => {
-            let newArr = [...taskList];
-            newArr[index]["Status"] = !newArr[index]["Status"];
-            changeTaskList(newArr);
-          }}
-        />
-      )) : "Loading..."}
+      {taskList
+        ? taskList.map((task, index) => (
+            <Task
+              key={task["ID"]}
+              taskName={task["TaskName"]}
+              state={task["Status"]}
+              remove={() => {
+                changeTaskList(taskList.filter((_, id) => id !== index));
+              }}
+              done={() => {
+                let newArr = [...taskList];
+                newArr[index]["Status"] = !newArr[index]["Status"];
+                changeTaskList(newArr);
+              }}
+            />
+          ))
+        : "Loading..."}
     </div>
   );
 };
