@@ -7,8 +7,8 @@ let TaskList = () => {
   const [taskList, changeTaskList] = useState(null);
 
   useEffect(() => {
-    let host = process.env.REACT_APP_API_HOST;
-    let port = process.env.REACT_APP_API_PORT;
+    let host = process.env.REACT_APP_API_HOST || "127.0.0.1";
+    let port = process.env.REACT_APP_API_PORT || "3001";
 
     fetch(`http://${host}:${port}/api/v1/getall`)
       .then((response) => response.json())
