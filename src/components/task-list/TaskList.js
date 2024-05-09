@@ -7,14 +7,12 @@ let TaskList = () => {
   const [taskList, changeTaskList] = useState(null);
 
   useEffect(() => {
-    let host = process.env.REACT_APP_API_HOST;
-    let port = process.env.REACT_APP_API_PORT;
+    // let host = process.env.REACT_APP_API_HOST;
+    // let port = process.env.REACT_APP_API_PORT;
 
-    fetch(`${host}:${port}/api/v1/getall`)
+    fetch("http://fiber-service.fiber.svc.cluster.local:3001/api/v1/getall")
       .then((response) => response.json())
       .then((taskList) => {
-        console.log(taskList);
-        console.log("Test");
         changeTaskList(taskList);
       })
       .catch((error) => console.error("Error:", error));
