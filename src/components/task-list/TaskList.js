@@ -2,13 +2,14 @@ import "./TaskList.css";
 import Task from "../task/Task";
 import React, { useState, useEffect } from "react";
 import NewTask from "../new-task/NewTask";
+import env from 'react-app-env'
 
 let TaskList = () => {
   const [taskList, changeTaskList] = useState(null);
 
   useEffect(() => {
-    let host = process.env.REACT_APP_API_HOST;
-    let port = process.env.REACT_APP_API_PORT;
+    let host = env.REACT_APP_API_HOST;
+    let port = env.REACT_APP_API_PORT;
 
     fetch(`http://${host}:${port}/api/v1/getall`)
       .then((response) => response.json())
