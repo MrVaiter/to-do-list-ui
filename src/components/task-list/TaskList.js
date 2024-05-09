@@ -3,7 +3,6 @@ import Task from "../task/Task";
 import React, { useState, useEffect } from "react";
 import NewTask from "../new-task/NewTask";
 import axios from 'axios';
-require('dotenv').config()
 
 let TaskList = () => {
   const [taskList, changeTaskList] = useState(null);
