@@ -14,6 +14,7 @@ let TaskList = () => {
       .then((response) => response.json())
       .then((taskList) => {
         console.log(taskList);
+        console.log("Test");
         changeTaskList(taskList);
       })
       .catch((error) => console.error("Error:", error));
