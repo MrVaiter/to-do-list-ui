@@ -1,5 +1,5 @@
 # Використовуємо офіційний образ Node.js для стадії збірки
-FROM node:18 as build
+FROM node:22.1-alpine as build
 
 # Встановлюємо робочий каталог в контейнері
 WORKDIR /app
@@ -13,23 +13,9 @@ RUN npm install
 # Копіюємо вихідний код в контейнер
 COPY . .
 
-# Збираємо додаток для продакшну
-RUN npm run build
-
-# Використовуємо офіційний образ Node.js для стадії запуску
-FROM node:18-alpine
-
-# Встановлюємо робочий каталог в контейнері
-WORKDIR /app
-
-# Встановлюємо глобальний пакет serve
-RUN npm install -g serve
-
-# Копіюємо збірку з стадії збірки
-COPY --from=build /app/build ./build
+RUN chmod u+x ./start.sh
 
 # Відкриваємо порт 3000
 EXPOSE 3000
 
-# Команда для запуску додатку
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["./start.sh"]
