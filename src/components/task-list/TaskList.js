@@ -13,6 +13,7 @@ let TaskList = () => {
     fetch(`http://${host}:${port}/api/v1/getall`)
       .then((response) => response.json())
       .then((taskList) => {
+        console.log(taskList);
         changeTaskList(taskList);
       })
       .catch((error) => console.error("Error:", error));
