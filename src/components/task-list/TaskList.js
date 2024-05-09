@@ -10,7 +10,7 @@ let TaskList = () => {
     let host = process.env.REACT_APP_API_HOST;
     let port = process.env.REACT_APP_API_PORT;
 
-    fetch(`http://${host}:${port}/api/v1/getall`)
+    fetch(`${host}:${port}/api/v1/getall`)
       .then((response) => response.json())
       .then((taskList) => {
         console.log(taskList);
